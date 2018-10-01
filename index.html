@@ -26,6 +26,11 @@
   <script src="https://rawgit.com/chromium/chromium/master/components/neterror/resources/offline.js"></script>
   <script>
     function onDocumentLoad() {
+      Runner.prototype.setPlayStatus = function (isPlaying) {
+        if (this.touchController)
+          this.touchController.classList.toggle('hidden', !isPlaying);
+        this.playing = isPlaying;
+      }
       Runner.prototype.isDisabled = function () { return false }
       Runner.isBdayModeEnabled = function () { return false }
       return new Runner('.interstitial-wrapper')
